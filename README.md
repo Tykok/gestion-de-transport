@@ -27,9 +27,9 @@ d’une date d’inscription et d’un type.
 Exemple :
 ```json
 {
-Clients : 59 ,
-Motards : 12,
-Chauffeur : 33,
+"Clients" : 59 ,
+"Motards" : 12,
+"Chauffeur" : 33,
 }
 ```
 
@@ -41,10 +41,10 @@ CDAN 2022
 
 ```json
 {
-Type : CHAUFFEUR,
-DisplayName : Thomas CLAMON
-Age : 31
-NbJourActif : 456
+"Type" : "CHAUFFEUR",
+"DisplayName" : "Thomas CLAMON",
+"Age" : 31,
+"NbJourActif" : 456
 }
 ```
 
@@ -68,8 +68,8 @@ d’un client, et la somme de la distance parcouru.
 Exemple :
 ```json
 {
-Client : "Thomas CLAMON" ,
- NbCourse :12
-Distance_total : 7532
+"Client" : "Thomas CLAMON",
+"NbCourse" :12,
+"Distance_total" : 7532
 }
 ```
