@@ -12,6 +12,15 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     User findAllById(Integer id);
     User deleteUserById(Integer id);
 
+
+    @Query(value = "select avg(age) " +
+            "from (" +
+            "select YEAR(FROM_DAYS(datediff(now(), date_naissance))) as age " +
+            "from user" +
+            ") ageOfUser;",
+            nativeQuery = true)
+    Double getAverageAge();
+
     @Query(value = "SELECT type, count(type) as nb FROM user group by type;", nativeQuery = true)
     List countAllByType();
 

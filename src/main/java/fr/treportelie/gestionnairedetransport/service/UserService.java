@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +40,11 @@ public class UserService {
     public void deleteUserById(User user) {
         userRepo.deleteUserById(user.getId());
     }
+
+    public Double getAverageAge(){
+        return userRepo.getAverageAge();
+    }
+
 
     /**
      * This function is used to create an User

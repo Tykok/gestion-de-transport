@@ -53,6 +53,16 @@ public class UserController {
     }
 
     /**
+     * This endpoint return the age average of all users
+     *
+     * @return Double
+     */
+    @GetMapping("/average")
+    private Double getAverageAge() {
+        return userService.getAverageAge();
+    }
+
+    /**
      * This endpoint used to count user by type
      *
      * @return List
