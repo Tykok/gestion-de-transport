@@ -97,4 +97,9 @@ public class UserController {
     private List<User> getUserByType(@RequestBody Type type) {
         return userService.getUserByType(type);
     }
+
+    @GetMapping("/getUser/{id}")
+    private Object getUser(@PathVariable String id) {
+        return userService.getFormatedDataById(Integer.valueOf(id));
+    }
 }
