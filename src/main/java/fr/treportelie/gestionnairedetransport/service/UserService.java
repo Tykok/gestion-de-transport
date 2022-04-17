@@ -41,4 +41,12 @@ public class UserService {
         }
         return true;
     }
+
+    /**
+     * This function return a list of numbers of users by type
+     * @return a list of numbers of users by type
+     */
+    public List countAllByType(){
+        return userRepo.countAllByType();
+    }
 }

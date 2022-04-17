@@ -49,7 +49,12 @@ public class UserController {
         }
     }
 
-    private String insertAnUser(@RequestBody User user){
-        // TODO
+    /**
+     * This endpoint used to count user by type
+     * @return List
+     */
+    @GetMapping("/countByUserType")
+    private List countUser(){
+        return userService.countAllByType();
     }
 }
