@@ -22,7 +22,11 @@ public interface UserRepo extends JpaRepository<User, Integer> {
             nativeQuery = true)
     Double getAverageAge();
 
-    @Query(value = "SELECT type, count(type) as nb FROM user group by type;", nativeQuery = true)
+    @Query(value = "SELECT t.reference, count(u.id) as nb " +
+            "FROM user u " +
+            "inner join type t " +
+            "on t.id = u.id_type " +
+            "group by u.id_type;", nativeQuery = true)
     List countAllByType();
 
     List<User> getUsersByType(Type type);
