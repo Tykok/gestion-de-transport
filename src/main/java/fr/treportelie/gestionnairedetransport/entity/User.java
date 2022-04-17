@@ -1,8 +1,11 @@
 package fr.treportelie.gestionnairedetransport.entity;
 
+import org.hibernate.annotations.Any;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Transactional
@@ -21,10 +24,10 @@ public class User {
     private String prenom;
 
     @Column(name = "date_naissance")
-    private Date date_naissance;
+    private LocalDate date_naissance;
 
     @Column(name = "date_inscription")
-    private Date date_inscription;
+    private LocalDate date_inscription;
 
     @Column(name = "type")
     private Integer type;
@@ -53,19 +56,19 @@ public class User {
         this.prenom = prenom;
     }
 
-    public Date getDate_naissance() {
+    public LocalDate getDate_naissance() {
         return date_naissance;
     }
 
-    public void setDate_naissance(Date date_naissance) {
+    public void setDate_naissance(LocalDate date_naissance) {
         this.date_naissance = date_naissance;
     }
 
-    public Date getDate_inscription() {
+    public LocalDate getDate_inscription() {
         return date_inscription;
     }
 
-    public void setDate_inscription(Date date_inscription) {
+    public void setDate_inscription(LocalDate date_inscription) {
         this.date_inscription = date_inscription;
     }
 
