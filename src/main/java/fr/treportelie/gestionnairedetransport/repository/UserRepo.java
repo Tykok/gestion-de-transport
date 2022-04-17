@@ -14,8 +14,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     User findAllById(Integer id);
 
-    User deleteUserById(Integer id);
-
+    void deleteById(Integer id);
 
     @Query(value = "select avg(age) " +
             "from (" +

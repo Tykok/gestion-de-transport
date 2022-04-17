@@ -1,4 +1,4 @@
-# Partie 1
+# Consignes
 
 Dans ce TP vous devez mettre en place une API pour la Gestion de transport style
 Uber
@@ -73,3 +73,28 @@ Exemple :
 "Distance_total" : 7532
 }
 ```
+
+# Mise en place
+
+## Fichier ``application.properties`
+
+Avant de démarrer l'application, vous devez créer votre base de données MySQL.
+
+```sql
+CREATE DATABASE IF NOT EXISTS `gestionnaire_transport`;
+USE `gestionnaire_transport`;
+```
+
+Par la suite, il suffira d'utiliser le script SQL ``create_tables.sql`` afin de créer les tables.
+
+```bash
+mysql -u <user> -p < create_tables.sql
+```
+
+Par la suite, il suffira de modifier le fichier ``application.properties`` en ajoutant les informations de connexion à votre base de données (user, password).
+
+# Documentation API
+
+Le [lien](https://documenter.getpostman.com/view/12631609/Uyr5oesV) vers la documentation du projet.
+
+Celle-ci a été générer avec Postman.

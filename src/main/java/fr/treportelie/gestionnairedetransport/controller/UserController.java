@@ -40,15 +40,16 @@ public class UserController {
     /**
      * This endpoint used to delete an user
      *
-     * @param user
+     * @param id
      * @return A sentence
      */
-    @PostMapping("/delete")
-    private String deleteUser(@RequestBody User user) {
+    @DeleteMapping("/delete")
+    private String deleteUser(@RequestBody String id) {
         try {
-            userService.deleteUserById(user);
+            userService.deleteUserById(Integer.valueOf(id));
             return "User as been deleted";
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return "Error when try to delete the user";
         }
     }
@@ -79,14 +80,16 @@ public class UserController {
      * @param user User
      * @return
      */
-    @PostMapping("/insert")
-    private String insertAnUser(@RequestBody User user) {
-        if (userService.saveUser(user)) {
+    @PutMapping ("/insert/{id_type}")
+    private String insertAnUser(@RequestBody User user, @PathVariable String id_type) {
+
+        if (userService.saveUser(user, id_type)) {
             return "User as been created";
         } else {
             return "Error when try to insert the user";
         }
     }
+
 
     /**
      * This endpoint used to update an user
