@@ -6,6 +6,13 @@ public class UserDto {
     private Integer Age;
     private Integer NbJourActif;
 
+    public UserDto(String type, String displayName, Integer age, Integer nbJourActif) {
+        Type = type;
+        DisplayName = displayName;
+        Age = age;
+        NbJourActif = nbJourActif;
+    }
+
     public String getType() {
         return Type;
     }

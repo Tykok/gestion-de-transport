@@ -5,6 +5,11 @@ public class NumberUserDto {
     private String reference;
     private String nb;
 
+    public NumberUserDto(String reference, String nb) {
+        this.reference = reference;
+        this.nb = nb;
+    }
+
     public String getReference() {
         return reference;
     }

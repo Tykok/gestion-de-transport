@@ -1,5 +1,8 @@
 package fr.treportelie.gestionnairedetransport.service;
 
+import fr.treportelie.gestionnairedetransport.dto.CourseDto;
+import fr.treportelie.gestionnairedetransport.dto.NumberUserDto;
+import fr.treportelie.gestionnairedetransport.dto.UserDto;
 import fr.treportelie.gestionnairedetransport.entity.Type;
 import fr.treportelie.gestionnairedetransport.entity.User;
 import fr.treportelie.gestionnairedetransport.repository.TypeRepo;
@@ -89,8 +92,8 @@ public class UserService {
      *
      * @return a list of numbers of users by type
      */
-    public List countAllByType() {
-        return userRepo.countAllByType();
+    public NumberUserDto countAllByType() {
+        return (NumberUserDto) userRepo.countAllByType();
     }
 
     /**
@@ -108,8 +111,8 @@ public class UserService {
      * @param id
      * @return Object
      */
-    public Object getFormatedDataById(Integer id) {
-        return userRepo.getFormatedDataById(id);
+    public UserDto getFormatedDataById(Integer id) {
+        return  (UserDto) userRepo.getFormatedDataById(id);
     }
 
     /**
@@ -118,7 +121,7 @@ public class UserService {
      * @param id
      * @return Object
      */
-    public Object getFormatedDataByClient(Integer id) {
-        return userRepo.getFormatedDataByClient(id);
+    public CourseDto getFormatedDataByClient(Integer id) {
+        return (CourseDto) userRepo.getFormatedDataByClient(id);
     }
 }

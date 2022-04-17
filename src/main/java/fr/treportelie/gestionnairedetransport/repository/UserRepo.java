@@ -1,6 +1,9 @@
 package fr.treportelie.gestionnairedetransport.repository;
 
 
+import fr.treportelie.gestionnairedetransport.dto.CourseDto;
+import fr.treportelie.gestionnairedetransport.dto.NumberUserDto;
+import fr.treportelie.gestionnairedetransport.dto.UserDto;
 import fr.treportelie.gestionnairedetransport.entity.Type;
 import fr.treportelie.gestionnairedetransport.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,7 +32,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
             "inner join type t " +
             "on t.id = u.id_type " +
             "group by u.id_type;", nativeQuery = true)
-    List countAllByType();
+    Object countAllByType();
 
     List<User> getUsersByType(Type type);
 

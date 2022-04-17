@@ -1,5 +1,8 @@
 package fr.treportelie.gestionnairedetransport.controller;
 
+import fr.treportelie.gestionnairedetransport.dto.CourseDto;
+import fr.treportelie.gestionnairedetransport.dto.NumberUserDto;
+import fr.treportelie.gestionnairedetransport.dto.UserDto;
 import fr.treportelie.gestionnairedetransport.entity.Type;
 import fr.treportelie.gestionnairedetransport.entity.User;
 import fr.treportelie.gestionnairedetransport.service.UserService;
@@ -70,7 +73,7 @@ public class UserController {
      * @return List
      */
     @GetMapping("/countByUserType")
-    private List countUser() {
+    private NumberUserDto countUser() {
         return userService.countAllByType();
     }
 
@@ -102,12 +105,12 @@ public class UserController {
     }
 
     @GetMapping("/getUser/{id}")
-    private Object getUser(@PathVariable String id) {
+    private UserDto getUser(@PathVariable String id) {
         return userService.getFormatedDataById(Integer.valueOf(id));
     }
 
     @GetMapping("/getCourse/{id}")
-    private Object getCourse(@PathVariable String id) {
+    private CourseDto getCourse(@PathVariable String id) {
         return userService.getFormatedDataByClient(Integer.valueOf(id));
     }
 }
