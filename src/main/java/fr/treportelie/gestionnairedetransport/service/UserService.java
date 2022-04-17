@@ -88,4 +88,13 @@ public class UserService {
     public List<User> getUserByType(Type type){
         return userRepo.getUsersByType(type);
     }
+
+    /**
+     * This function return an users by an id
+     * @param id
+     * @return Object
+     */
+    public Object getFormatedDataById(Integer id) {
+        return userRepo.getFormatedDataById(id);
+    }
 }
