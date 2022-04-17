@@ -17,44 +17,63 @@ public class UserController {
 
     /**
      * This endpoint return a list of all users
+     *
      * @return List<User>
      */
     @GetMapping("/all")
-    private List<User> getAllUser(){
+    private List<User> getAllUser() {
         return userService.findAll();
     }
 
     /**
      * This endpoint return a specific user
+     *
      * @param id
      * @return User
      */
     @GetMapping("/get/{id}")
-    private Optional<User> getAUser(@PathVariable String id){
+    private Optional<User> getAUser(@PathVariable String id) {
         return userService.findById(Integer.valueOf(id));
     }
 
     /**
      * This endpoint used to delete an user
+     *
      * @param user
      * @return A sentence
      */
     @PostMapping("/delete")
-    private String deleteUser(@RequestBody User user){
-        try{
+    private String deleteUser(@RequestBody User user) {
+        try {
             userService.deleteUserById(user);
             return "User as been deleted";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "Error when try to delete the user";
         }
     }
 
     /**
      * This endpoint used to count user by type
+     *
      * @return List
      */
     @GetMapping("/countByUserType")
-    private List countUser(){
+    private List countUser() {
         return userService.countAllByType();
+    }
+
+    /**
+     * This endpoint used to create an user
+     *
+     * @param user User
+     * @return
+     */
+    @PostMapping("/insert")
+    private String insertAnUser(@RequestBody User user) {
+        if (userService.saveUser(user)) {
+            return "User as been created";
+        } else {
+            return "Error when try to insert the user";
+        }
     }
 }
