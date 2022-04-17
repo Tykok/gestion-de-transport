@@ -97,4 +97,13 @@ public class UserService {
     public Object getFormatedDataById(Integer id) {
         return userRepo.getFormatedDataById(id);
     }
+
+    /**
+     * This function return all information of all course of an user
+     * @param id
+     * @return Object
+     */
+    public Object getFormatedDataByClient(Integer id) {
+        return userRepo.getFormatedDataByClient(id);
+    }
 }

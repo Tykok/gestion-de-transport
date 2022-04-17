@@ -102,4 +102,9 @@ public class UserController {
     private Object getUser(@PathVariable String id) {
         return userService.getFormatedDataById(Integer.valueOf(id));
     }
+
+    @GetMapping("/getCourse/{id}")
+    private Object getCourse(@PathVariable String id) {
+        return userService.getFormatedDataByClient(Integer.valueOf(id));
+    }
 }

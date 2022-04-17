@@ -43,5 +43,16 @@ public interface UserRepo extends JpaRepository<User, Integer> {
             "on u.id_type = t.id " +
             "where u.id = :id ;",
             nativeQuery = true)
-    Object getFormatedDataById(@Param("id")int id);
+    Object getFormatedDataById(@Param("id") int id);
+
+
+    @Query(value = " select concat(nom, ' ', prenom) as Client, " +
+            "count(c.id) as NbCourse, " +
+            "sum(c.distance) as Distance_total " +
+            "from user u " +
+            "inner join course c " +
+            "on u.id = c.id_client " +
+            "where u.id = :id ",
+            nativeQuery = true)
+    Object getFormatedDataByClient(@Param("id") int id);
 }
