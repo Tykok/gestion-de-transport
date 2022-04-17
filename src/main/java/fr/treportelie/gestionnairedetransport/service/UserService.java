@@ -1,12 +1,12 @@
 package fr.treportelie.gestionnairedetransport.service;
 
+import fr.treportelie.gestionnairedetransport.entity.Type;
 import fr.treportelie.gestionnairedetransport.entity.User;
 import fr.treportelie.gestionnairedetransport.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,5 +79,13 @@ public class UserService {
      */
     public List countAllByType(){
         return userRepo.countAllByType();
+    }
+
+    /**
+     * This function return a list of users by type
+     * @return a list of users by type
+     */
+    public List<User> getUserByType(Type type){
+        return userRepo.getUsersByType(type);
     }
 }

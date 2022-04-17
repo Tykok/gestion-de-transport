@@ -1,5 +1,6 @@
 package fr.treportelie.gestionnairedetransport.controller;
 
+import fr.treportelie.gestionnairedetransport.entity.Type;
 import fr.treportelie.gestionnairedetransport.entity.User;
 import fr.treportelie.gestionnairedetransport.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,5 +86,15 @@ public class UserController {
         } else {
             return "Error when try to insert the user";
         }
+    }
+
+    /**
+     * This endpoint used to update an user
+     * @param type
+     * @return List<User>
+     */
+    @PostMapping("/getUserByType")
+    private List<User> getUserByType(@RequestBody Type type) {
+        return userService.getUserByType(type);
     }
 }

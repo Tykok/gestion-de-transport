@@ -27,8 +27,9 @@ public class User {
     @Column(name = "date_inscription")
     private LocalDate date_inscription;
 
-    @Column(name = "type")
-    private Integer type;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_type", referencedColumnName = "id")
+    private Type type;
 
     public Integer getId() {
         return id;
@@ -70,11 +71,11 @@ public class User {
         this.date_inscription = date_inscription;
     }
 
-    public Integer getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(Type type) {
         this.type = type;
     }
 }
