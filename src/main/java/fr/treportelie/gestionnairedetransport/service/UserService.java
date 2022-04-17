@@ -17,18 +17,36 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
+    /**
+     * This function is used to get an user by id
+     * @param id int
+     * @return Optional<User>
+     */
     public Optional<User> findById(Integer id) {
         return userRepo.findById(id);
     }
 
+    /**
+     * This function is used to get all user
+     * @return List<User>
+     */
     public List<User> findAll() {
         return userRepo.findAll();
     }
 
+    /**
+     * This function is used to delete an user
+     * @param user
+     */
     public void deleteUserById(User user) {
         userRepo.deleteUserById(user.getId());
     }
 
+    /**
+     * This function is used to create an User
+     * @param user
+     * @return Boolean
+     */
     public Boolean saveUser(User user) {
 
         if (user.getDate_naissance() == null
