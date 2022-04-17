@@ -2,6 +2,7 @@ package fr.treportelie.gestionnairedetransport.service;
 
 import fr.treportelie.gestionnairedetransport.entity.Type;
 import fr.treportelie.gestionnairedetransport.entity.User;
+import fr.treportelie.gestionnairedetransport.repository.TypeRepo;
 import fr.treportelie.gestionnairedetransport.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,12 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private TypeRepo typeRepo;
+
     /**
      * This function is used to get an user by id
+     *
      * @param id int
      * @return Optional<User>
      */
@@ -27,6 +32,7 @@ public class UserService {
 
     /**
      * This function is used to get all user
+     *
      * @return List<User>
      */
     public List<User> findAll() {
@@ -35,38 +41,43 @@ public class UserService {
 
     /**
      * This function is used to delete an user
-     * @param user
+     *
+     * @param userId
      */
-    public void deleteUserById(User user) {
-        userRepo.deleteUserById(user.getId());
+    public void deleteUserById(Integer userId) {
+        userRepo.deleteById(userId);
     }
 
-    public Double getAverageAge(){
+    public Double getAverageAge() {
         return userRepo.getAverageAge();
     }
 
 
     /**
      * This function is used to create an User
+     *
      * @param user
+     * @param id_type
      * @return Boolean
      */
-    public Boolean saveUser(User user) {
+    public Boolean saveUser(User user, String id_type) {
 
         if (user.getDate_naissance() == null
                 && user.getNom() == null
-                && user.getPrenom() == null
-                && user.getType() == null) {
+                && user.getPrenom() == null) {
             return false;
         }
+
 
         if (user.getDate_inscription() == null) {
             user.setDate_inscription(LocalDate.now());
         }
 
         try {
+            user.setType(typeRepo.getTypeById(Integer.parseInt(id_type)));
             userRepo.save(user);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
 
@@ -75,22 +86,25 @@ public class UserService {
 
     /**
      * This function return a list of numbers of users by type
+     *
      * @return a list of numbers of users by type
      */
-    public List countAllByType(){
+    public List countAllByType() {
         return userRepo.countAllByType();
     }
 
     /**
      * This function return a list of users by type
+     *
      * @return a list of users by type
      */
-    public List<User> getUserByType(Type type){
+    public List<User> getUserByType(Type type) {
         return userRepo.getUsersByType(type);
     }
 
     /**
      * This function return an users by an id
+     *
      * @param id
      * @return Object
      */
@@ -100,6 +114,7 @@ public class UserService {
 
     /**
      * This function return all information of all course of an user
+     *
      * @param id
      * @return Object
      */
