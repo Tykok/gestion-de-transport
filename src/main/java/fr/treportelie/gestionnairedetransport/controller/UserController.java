@@ -49,7 +49,12 @@ public class UserController {
         }
     }
 
-    private String insertAnUser(@RequestBody User user){
-        // TODO
+    /**
+     * This endpoint return the age average of all users
+     * @return Double
+     */
+    @GetMapping("/average")
+    private Double getAverageAge(){
+        return userService.getAverageAge();
     }
 }

@@ -27,6 +27,10 @@ public class UserService {
         userRepo.deleteUserById(user.getId());
     }
 
+    public Double getAverageAge(){
+        return userRepo.getAverageAge();
+    }
+
     public Boolean saveUser(String nom, String prenom, Date date_naissance, Date date_inscription, Integer type){
         User user = new User();
         user.setNom(nom);
