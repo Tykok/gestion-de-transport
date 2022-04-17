@@ -53,6 +53,16 @@ public class UserController {
     }
 
     /**
+     * This endpoint used to count user by type
+     *
+     * @return List
+     */
+    @GetMapping("/countByUserType")
+    private List countUser() {
+        return userService.countAllByType();
+    }
+
+    /**
      * This endpoint used to create an user
      *
      * @param user User

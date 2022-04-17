@@ -1,7 +1,5 @@
 package fr.treportelie.gestionnairedetransport.entity;
 
-import org.hibernate.annotations.Any;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
