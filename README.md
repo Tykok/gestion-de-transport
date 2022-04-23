@@ -98,3 +98,7 @@ Par la suite, il suffira de modifier le fichier ``application.properties`` en aj
 Le [lien](https://documenter.getpostman.com/view/12631609/Uyr5oesV) vers la documentation du projet.
 
 Celle-ci a été générer avec Postman.
+
+# MCD
+
+![image](https://user-images.githubusercontent.com/56304246/164949247-3bc242af-3735-4c83-9334-3649516cdf0e.png)
