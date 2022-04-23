@@ -2,27 +2,43 @@ package fr.treportelie.gestionnairedetransport.dto;
 
 public class NumberUserDto {
 
-    private String reference;
-    private String nb;
+    private Integer Clients;
+    private Integer Motards;
+    private Integer Chauffeur;
 
-    public NumberUserDto(String reference, String nb) {
-        this.reference = reference;
-        this.nb = nb;
+    public NumberUserDto(Integer clients, Integer motards, Integer chauffeur) {
+        Clients = clients;
+        Motards = motards;
+        Chauffeur = chauffeur;
     }
 
-    public String getReference() {
-        return reference;
+    public NumberUserDto() {
+        Clients = 0;
+        Motards = 0;
+        Chauffeur = 0;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public Integer getClients() {
+        return Clients;
     }
 
-    public String getNb() {
-        return nb;
+    public void setClients(Integer clients) {
+        Clients = clients;
     }
 
-    public void setNb(String nb) {
-        this.nb = nb;
+    public Integer getMotards() {
+        return Motards;
+    }
+
+    public void setMotards(Integer motards) {
+        Motards = motards;
+    }
+
+    public Integer getChauffeur() {
+        return Chauffeur;
+    }
+
+    public void setChauffeur(Integer chauffeur) {
+        Chauffeur = chauffeur;
     }
 }

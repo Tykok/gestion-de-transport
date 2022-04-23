@@ -1,5 +1,6 @@
 package fr.treportelie.gestionnairedetransport.dto;
 
+
 public class CourseDto {
     private String Client;
     private Integer NbCourse;

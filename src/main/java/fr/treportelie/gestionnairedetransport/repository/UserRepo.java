@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
@@ -27,12 +28,12 @@ public interface UserRepo extends JpaRepository<User, Integer> {
             nativeQuery = true)
     Double getAverageAge();
 
-    @Query(value = "SELECT t.reference, count(u.id) as nb " +
+    @Query(value = "SELECT count(u.id) as nb " +
             "FROM user u " +
             "inner join type t " +
             "on t.id = u.id_type " +
-            "group by u.id_type;", nativeQuery = true)
-    Object countAllByType();
+            "where t.reference = :ref ;", nativeQuery = true)
+    Integer countAllByType(@Param("ref") String ref);
 
     List<User> getUsersByType(Type type);
 
@@ -45,8 +46,29 @@ public interface UserRepo extends JpaRepository<User, Integer> {
             "on u.id_type = t.id " +
             "where u.id = :id ;",
             nativeQuery = true)
-    Object getFormatedDataById(@Param("id") int id);
+    UserDto getFormatedDataById(@Param("id") int id);
 
+    @Query(value = "select CONCAT(prenom, ' ', nom) as DisplayName " +
+            "from user " +
+            "where id = :id ;",
+            nativeQuery = true)
+    String getDisplayNameById(@Param("id") int id);
+
+
+    @Query(value = "select YEAR(FROM_DAYS(datediff(now(), date_naissance))) as Age "+
+            "from user " +
+            "where id = :id ;",
+            nativeQuery = true)
+    Integer getAgeById(@Param("id") int id);
+
+    @Query(value = "select DAY(FROM_DAYS(datediff(now(), date_naissance))) as NbJourActif "+
+                "from user " +
+                "where id = :id ;",
+                nativeQuery = true)
+    Integer getNbJourActifById(@Param("id") int id);
+
+    @Query(value="select id_type from user where id = :id", nativeQuery = true)
+    Integer getIdTypeByIdUser(@Param("id") int id);
 
     @Query(value = " select concat(nom, ' ', prenom) as Client, " +
             "count(c.id) as NbCourse, " +

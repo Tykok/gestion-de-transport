@@ -5,12 +5,14 @@ import fr.treportelie.gestionnairedetransport.dto.NumberUserDto;
 import fr.treportelie.gestionnairedetransport.dto.UserDto;
 import fr.treportelie.gestionnairedetransport.entity.Type;
 import fr.treportelie.gestionnairedetransport.entity.User;
+import fr.treportelie.gestionnairedetransport.repository.CourseRepo;
 import fr.treportelie.gestionnairedetransport.repository.TypeRepo;
 import fr.treportelie.gestionnairedetransport.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +24,10 @@ public class UserService {
 
     @Autowired
     private TypeRepo typeRepo;
+
+
+    @Autowired
+    private CourseRepo courseRepo;
 
     /**
      * This function is used to get an user by id
@@ -93,7 +99,14 @@ public class UserService {
      * @return a list of numbers of users by type
      */
     public NumberUserDto countAllByType() {
-        return (NumberUserDto) userRepo.countAllByType();
+
+        Integer numberOfClient = userRepo.countAllByType("CLIENT");
+        Integer numberOfMotard = userRepo.countAllByType("CHAUFFEUR (MOTARD)");
+        Integer numberOfDriver = userRepo.countAllByType("CHAUFFEUR (VOITURE)");
+
+        NumberUserDto numberUserDto = new NumberUserDto(numberOfClient,numberOfMotard,numberOfDriver);
+
+        return numberUserDto;
     }
 
     /**
@@ -112,7 +125,17 @@ public class UserService {
      * @return Object
      */
     public UserDto getFormatedDataById(Integer id) {
-        return  (UserDto) userRepo.getFormatedDataById(id);
+
+        String displayName = userRepo.getDisplayNameById(id);
+
+        String typeReference = typeRepo.getTypeById(
+                userRepo.getIdTypeByIdUser(id)
+        ).getReference();
+
+        Integer age = userRepo.getAgeById(id);
+        Integer nbJourActif = userRepo.getNbJourActifById(id);
+
+        return new UserDto(typeReference, displayName, age, nbJourActif);
     }
 
     /**
@@ -122,6 +145,9 @@ public class UserService {
      * @return Object
      */
     public CourseDto getFormatedDataByClient(Integer id) {
-        return (CourseDto) userRepo.getFormatedDataByClient(id);
+        String displayName = userRepo.getDisplayNameById(id);
+        Integer nbCourse = courseRepo.countByClient(id);
+        Integer distance = courseRepo.sumOfDistanceByClient(id);
+        return new CourseDto(displayName, nbCourse, distance);
     }
 }

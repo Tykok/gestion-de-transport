@@ -44,4 +44,14 @@ public class UserDto {
     public void setNbJourActif(Integer nbJourActif) {
         NbJourActif = nbJourActif;
     }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "Type='" + Type + '\'' +
+                ", DisplayName='" + DisplayName + '\'' +
+                ", Age=" + Age +
+                ", NbJourActif=" + NbJourActif +
+                '}';
+    }
 }

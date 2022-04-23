@@ -1,9 +1,13 @@
 package fr.treportelie.gestionnairedetransport.entity;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.sql.Time;
 import java.time.LocalDate;
 
+@Entity
+@Transactional
+@Table(name = "course")
 public class Course {
 
     @Id
